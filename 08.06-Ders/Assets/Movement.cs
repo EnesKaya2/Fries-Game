@@ -17,6 +17,7 @@ public class Movement : MonoBehaviour
     {
         float horizontalMove = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(horizontalMove * speed, rb.velocity.y);
-        
+
+
     }
 }
