@@ -31,4 +31,52 @@ public class Player : MonoBehaviour
     {
 
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Collider"))
+        {
+            Debug.Log("Trigger'a Dokundu");
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+
+        if (collision.gameObject.CompareTag("Collider"))
+        {
+            Debug.Log("Trigger'ýn Ýçinde");
+         
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Collider"))
+        {
+            Debug.Log("Triggerdan Çýktý");
+        }
+
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Collider"))
+        {
+            Debug.Log("Carpýsma'a Baþladý");
+        }
+
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Collider"))
+        {
+            Debug.Log("Carpýsma Devam Ediyor");
+        }
+
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Collider"))
+        {
+            Debug.Log("Carpýsma Bitti");
+        }
+
+    }
 }
