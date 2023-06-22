@@ -12,24 +12,25 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        if (!isStudy)
-        {
-            if (age == 18 && weight < 100)
-            {
-                Debug.Log("Askerlik Görevi Ýçin Cagrýldýgýnýz");
-            }
-            else if (age > 18 && weight < 100)
-            {
-                float delay = age - 18;
-                Debug.Log("Askerlik Görevi Ýcin" + delay + "Yýl Gec Kaldýnýz.Lütfen Birlige Teslim Olun");
-            }
-        }
+        //if (!isStudy)
+        //{
+        //    if (age == 18 && weight < 100)
+        //    {
+        //        Debug.Log("Askerlik Görevi Ýçin Cagrýldýgýnýz");
+        //    }
+        //    else if (age > 18 && weight < 100)
+        //    {
+        //        float delay = age - 18;
+        //        Debug.Log("Askerlik Görevi Ýcin" + delay + "Yýl Gec Kaldýnýz.Lütfen Birlige Teslim Olun");
+        //    }
+
+        //}
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -77,6 +78,6 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Carpýsma Bitti");
         }
-
     }
+   
 }

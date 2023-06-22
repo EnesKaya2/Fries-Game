@@ -6,6 +6,7 @@ public class TriggerScript : MonoBehaviour
 {
     [SerializeField] bool moveEnemy;
     [SerializeField] GameObject enemy;
+    [SerializeField] Transform spawnPos;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,20 +16,19 @@ public class TriggerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveEnemy();
+       
     }
     private void MoveEnemy()
     {
-        if (moveEnemy)
-        {
-            enemy.GetComponent<Rigidbody2D>().velocity = new Vector2(-1 * 10,0);
-        }
+        Instantiate(enemy,spawnPos.position,Quaternion.identity);
     }
+    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            moveEnemy = true;
+            MoveEnemy();
         }
     }
 
