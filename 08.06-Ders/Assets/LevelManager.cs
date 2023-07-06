@@ -13,6 +13,10 @@ public class LevelManager : MonoBehaviour
     }
     void PlayerSpawnerPos()
     {
-        Instantiate(player, playerSpawnerPos.position,Quaternion.identity);
+        Instantiate(player, playerSpawnerPos.position, Quaternion.identity);
+    }
+    public void PlayerRespawner()
+    {
+        Instantiate(player, playerSpawnerPos.position, Quaternion.identity);
     }
 }

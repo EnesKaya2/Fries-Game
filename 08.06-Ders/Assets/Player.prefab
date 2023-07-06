@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1281998339876799410}
   - component: {fileID: 1281998339876799411}
+  - component: {fileID: 995599770353723003}
   m_Layer: 0
   m_Name: FeetPos
   m_TagString: Untagged
@@ -58,6 +59,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.19207025}
   m_EdgeRadius: 0
+--- !u!114 &995599770353723003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281998339876799409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e7fb2339e0ca444942f216a65330c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1281998341262969866
 GameObject:
   m_ObjectHideFlags: 0
@@ -71,7 +84,6 @@ GameObject:
   - component: {fileID: 1281998341262969867}
   - component: {fileID: 1281998341262970359}
   - component: {fileID: 1281998341262970352}
-  - component: {fileID: 1281998341262970353}
   - component: {fileID: 1281998341262970354}
   m_Layer: 0
   m_Name: Player
@@ -181,6 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c89f8762397ad499e4f26c2dfe60ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelManager: {fileID: 0}
   rb: {fileID: 0}
   speed: 7
   horizontalMove: 0
@@ -204,21 +217,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
---- !u!114 &1281998341262970353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1281998341262969866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5928242ab2698b4481644ecf9575310, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  age: 0
-  weight: 0
-  isStudy: 0
 --- !u!70 &1281998341262970354
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

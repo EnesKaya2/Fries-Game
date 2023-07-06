@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    [SerializeField] private LevelManager levelManager;
     [SerializeField] private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     [SerializeField] private float speed;
@@ -15,6 +16,8 @@ public class Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();      
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        levelManager=GameObject.Find("LevelManager").GetComponent<LevelManager>();
     }
 
     // Update is called once per frame
@@ -46,6 +49,7 @@ public class Movement : MonoBehaviour
         if (transform.position.y<playerYBoundry)
         {
             Destroy(gameObject);
+            levelManager.PlayerRespawner();
         }
     }
 }
