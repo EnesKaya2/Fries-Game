@@ -10,14 +10,18 @@ public class Movement : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float horizontalMove;
     [SerializeField] private float playerYBoundry;
+    private SoundManager soundManager;
+    private Delay delay;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();      
+        rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        levelManager=GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+        delay = GameObject.Find("LevelManager").GetComponent<Delay>();
     }
 
     // Update is called once per frame
@@ -46,10 +50,11 @@ public class Movement : MonoBehaviour
     }
     void PlayerDeath()
     {
-        if (transform.position.y<playerYBoundry)
+        if (transform.position.y < playerYBoundry)
         {
             Destroy(gameObject);
-            levelManager.PlayerRespawner();
+            soundManager.DeadSound();
+            delay.DelayStart();
         }
     }
 }

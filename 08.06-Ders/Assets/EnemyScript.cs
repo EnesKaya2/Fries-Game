@@ -8,11 +8,15 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] private float enemySpeed;
     [SerializeField] private float leftBoundry;
     private LevelManager levelManager;
+    private SoundManager soundManager;
+    private Delay delay;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+       soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+        delay = GameObject.Find("LevelManager").GetComponent<Delay>();
     }
     // Update is called once per frame
     void Update()
@@ -23,6 +27,7 @@ public class EnemyScript : MonoBehaviour
     void MoveEnemy()
     {
         rb.velocity = Vector2.left * enemySpeed;
+        soundManager.AttackEnemySound();
     }
     void DestroyEnemy()
     {
@@ -42,7 +47,8 @@ public class EnemyScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(collision.gameObject);
-            levelManager.PlayerRespawner();
+            soundManager.AttackEnemySound();
+            delay.DelayStart();
         }
         
     }
