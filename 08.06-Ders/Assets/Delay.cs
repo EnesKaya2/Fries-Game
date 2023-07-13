@@ -5,6 +5,7 @@ using UnityEngine;
 public class Delay : MonoBehaviour
 {
     private LevelManager levelManager;
+    public bool delayTime = true;
     // Start is called before the first frame update
     void Start()
     {
