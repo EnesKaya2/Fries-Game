@@ -968,7 +968,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 2153989016735453519, guid: 6433520e16581dc46ac2d9da819ee86d, type: 3}
+  gunLight: {fileID: 1983006999}
   bulletSpawnPos: {fileID: 58843770}
+  particle: {fileID: 19800004, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
+  isClose: 0
+  fireRate: 0
+  fireTimer: 3
 --- !u!1 &888948445
 GameObject:
   m_ObjectHideFlags: 0
@@ -1830,6 +1835,7 @@ MonoBehaviour:
   - {fileID: 52967844}
   - {fileID: 1638492566}
   - {fileID: 1891463649}
+  playerParticle: {fileID: 198247871303120836, guid: e473029e4c70ad543a6879b82a732f4f, type: 3}
 --- !u!1 &1638492564
 GameObject:
   m_ObjectHideFlags: 0

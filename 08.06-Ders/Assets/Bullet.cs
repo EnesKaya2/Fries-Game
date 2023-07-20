@@ -7,6 +7,8 @@ public class Bullet : MonoBehaviour
     [SerializeField] float bulletSpeed;
     private Rigidbody2D rb;
     private PlayerLives playerLives;
+    [SerializeField] ParticleSystem bulletParticle;
+
     private Delay delay;
     // Start is called before the first frame updates
 
@@ -23,6 +25,13 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Destroy(gameObject);
+
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            Instantiate(bulletParticle, gameObject.transform.position, Quaternion.identity);
+
+        }
+
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(collision.gameObject);
