@@ -1,17 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] GameObject player;
+    [SerializeField] GameObject door;
     [SerializeField] Transform playerSpawnerPos;
     [SerializeField] GameObject friesPrefab;
     // Start is called before the first frame update
+
+    public int count;
+    [SerializeField]public int countForWin;
+    private bool canWin;
     private void Awake()
     {
         PlayerSpawnerPos();
         spawnFries();
+      
+    }
+    private void Update()
+    {
+        OpenDoor();
     }
     void PlayerSpawnerPos()
     {
@@ -31,6 +42,16 @@ public class LevelManager : MonoBehaviour
         else
         {
             spawnFries();
+        }
+
+      
+    }
+    private void OpenDoor()
+    {
+        if (count == countForWin)
+        {
+            door.gameObject.SetActive(true);
+
         }
     }
 }

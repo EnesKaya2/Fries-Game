@@ -23,7 +23,7 @@ public class Jump : MonoBehaviour
     {
         Debug.Log(IsGrounded());
 
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        if (Input.GetButtonDown("Jump") && IsGrounded()&&!PauseMenu.isPause)
         {
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             soundManager.JumpSound();
