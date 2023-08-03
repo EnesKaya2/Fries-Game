@@ -199,6 +199,9 @@ MonoBehaviour:
   speed: 7
   horizontalMove: 0
   playerYBoundry: -10
+  dashAmount: 35
+  dashTime: 0.3
+  dashCoolDown: 1
 --- !u!114 &1281998341262970352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,7 +217,6 @@ MonoBehaviour:
   jumpPower: 9
   feetPos: {fileID: 1281998339876799410}
   radius: 0.3
-  fallGravityScale: 9
   layerMask:
     serializedVersion: 2
     m_Bits: 64

@@ -8,7 +8,7 @@ public class Jump : MonoBehaviour
     [SerializeField] private float jumpPower;
     [SerializeField] Transform feetPos;
     [SerializeField] float radius;
-    [SerializeField] int fallGravityScale;
+    [SerializeField] public static int fallGravityScale;
     [SerializeField] LayerMask layerMask;
     private SoundManager soundManager;
     // Start is called before the first frame update

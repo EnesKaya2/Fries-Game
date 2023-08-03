@@ -6,23 +6,56 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
-    public TextMeshProUGUI scoreText;
 
     public static int score = 0;
     public static int highScore;
 
     private void Awake()
     {
-        instance = this;
+        if (instance !=null && instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
     }
     void Start()
     {
-        scoreText.text ="Score : " + score.ToString();
+        highScore = PlayerPrefs.GetInt("HighScore");
         
     }
 
     void Update()
     {
-        scoreText.text = "Score : " + score.ToString();
+    }
+    public void AddPoint(int value)
+    {
+        score += value;
+
+        if (highScore<score)
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+        }
+
+    }
+    public int GetHighScore()
+    {
+        return PlayerPrefs.GetInt("HighScore");
+    }
+
+    public string GetHighScoreText()
+    {
+        return "High Score : " + PlayerPrefs.GetInt("HighScore").ToString();
+    }  public int GetScore()
+    {
+        return score;
+    }
+
+    public string GetScoreText()
+    {
+        return "Score : " + score.ToString();
     }
 }

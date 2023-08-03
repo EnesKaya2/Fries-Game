@@ -7,14 +7,24 @@ public class Movement : MonoBehaviour
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+
     [SerializeField] private float speed;
     [SerializeField] private float horizontalMove;
     [SerializeField] private float playerYBoundry;
+
     private SoundManager soundManager;
+
     private Delay delay;
     private UiManager uiManager;
     private PlayerLives playerLive;
 
+    #region DashRegion
+    public static bool canDash = true;
+    public static bool isDashing;
+    [SerializeField] float dashAmount = 20f;
+    [SerializeField] float dashTime = 0.3f;
+    [SerializeField] float dashCoolDown = 1f;
+    #endregion
     // Start is called before the first frame update
     void Start()
     {
@@ -34,9 +44,18 @@ public class Movement : MonoBehaviour
         PlayerMovement();
         CharacterFlip();
         PlayerDeath();
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && horizontalMove != 0)
+        {
+            StartCoroutine(Dash());
+        }
     }
     void PlayerMovement()
     {
+        if (isDashing)
+        {
+            return;
+        }
         horizontalMove = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(horizontalMove * speed, rb.velocity.y);
 
@@ -60,11 +79,27 @@ public class Movement : MonoBehaviour
             //uiManager.GetComponent<Canvas>().enabled = true;
             playerLive.Lives();
             soundManager.DeadSound();
-            if (delay.delayTime==true)
+            if (delay.delayTime == true)
             {
                 delay.DelayStart();
             }
-           
+
         }
+    }
+    private IEnumerator Dash()
+    {
+        Debug.Log("Dashing...");
+        canDash = false;
+        isDashing = true;
+        rb.gravityScale = 0;
+        Jump.fallGravityScale = 0;
+        rb.velocity = new Vector2(horizontalMove * dashAmount, 0f);
+        yield return new WaitForSeconds(dashTime);
+        rb.gravityScale = 5f;
+        Jump.fallGravityScale = 15;
+        isDashing = false;
+        yield return new WaitForSeconds(dashCoolDown);
+        Debug.Log("Can Dash");
+        canDash = true;
     }
 }

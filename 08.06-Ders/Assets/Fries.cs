@@ -15,7 +15,7 @@ public class Fries : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            ScoreManager.score += friesValue;
+            ScoreManager.instance.AddPoint(friesValue);
             Destroy(gameObject);
             levelManager.count++;
             levelManager.spawnFries();
