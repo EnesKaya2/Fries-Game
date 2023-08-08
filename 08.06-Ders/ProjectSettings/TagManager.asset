@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Collider
   - Ground
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -45,4 +46,10 @@ TagManager:
     locked: 0
   - name: Turret
     uniqueID: 3380781655
+    locked: 0
+  - name: Player
+    uniqueID: 2926971127
+    locked: 0
+  - name: Door
+    uniqueID: 2005382203
     locked: 0

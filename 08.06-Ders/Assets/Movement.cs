@@ -7,6 +7,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+    [SerializeField] private TrailRenderer trailRenderer;
 
     [SerializeField] private float speed;
     [SerializeField] private float horizontalMove;
@@ -21,16 +22,18 @@ public class Movement : MonoBehaviour
     #region DashRegion
     public static bool canDash = true;
     public static bool isDashing;
+    public static bool dashed;
     [SerializeField] float dashAmount = 20f;
     [SerializeField] float dashTime = 0.3f;
-    [SerializeField] float dashCoolDown = 1f;
+    public static float dashCoolDown = 1f;
     #endregion
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
+        trailRenderer = GetComponent<TrailRenderer>();
+        Cancel();
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
         delay = GameObject.Find("LevelManager").GetComponent<Delay>();
@@ -89,6 +92,7 @@ public class Movement : MonoBehaviour
     private IEnumerator Dash()
     {
         Debug.Log("Dashing...");
+        trailRenderer.emitting = true;
         canDash = false;
         isDashing = true;
         rb.gravityScale = 0;
@@ -98,8 +102,19 @@ public class Movement : MonoBehaviour
         rb.gravityScale = 5f;
         Jump.fallGravityScale = 15;
         isDashing = false;
+        trailRenderer.emitting = false;
+        dashed = true;
         yield return new WaitForSeconds(dashCoolDown);
+        dashed = false;
         Debug.Log("Can Dash");
         canDash = true;
+    }
+    private void Cancel()
+    {
+        isDashing = false;
+        canDash = true;
+        dashed=false;
+        rb.gravityScale = 5f;
+        Jump.fallGravityScale = 15;
     }
 }

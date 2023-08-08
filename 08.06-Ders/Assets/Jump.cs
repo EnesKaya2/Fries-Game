@@ -22,12 +22,7 @@ public class Jump : MonoBehaviour
     void Update()
     {
         Debug.Log(IsGrounded());
-
-        if (Input.GetButtonDown("Jump") && IsGrounded()&&!PauseMenu.isPause)
-        {
-            rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-            soundManager.JumpSound();
-        }
+        JumpAction();
         Gravity();
     }
     private bool IsGrounded()
@@ -49,6 +44,14 @@ public class Jump : MonoBehaviour
         else if (rb.velocity.y < 0)
         {
             rb.gravityScale = fallGravityScale;
+        }
+    }
+    private void JumpAction()
+    {
+        if (Input.GetButtonDown("Jump") && IsGrounded() && !PauseMenu.isPause && !Movement.isDashing)
+        {
+            rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            soundManager.JumpSound();
         }
     }
 }
