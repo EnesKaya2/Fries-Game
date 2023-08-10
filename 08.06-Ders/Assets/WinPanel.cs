@@ -10,8 +10,12 @@ public class WinPanel : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI highScoreText;
 
+    private void Start()
+    {
+        SoundManager.instance.PlaySound(15);
+    }
     // Start is called before the first frame update
-   public void NextLevel()
+    public void NextLevel()
     {
         SceneManager.LoadScene(1);
     }

@@ -203,7 +203,6 @@ MonoBehaviour:
   playerYBoundry: -10
   dashAmount: 35
   dashTime: 0.3
-  dashCoolDown: 1
 --- !u!114 &1281998341262970352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,12 +215,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e4e47221e80ff449c98bb315c980c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 9
+  jumpPower: 3
   feetPos: {fileID: 1281998339876799410}
   radius: 0.3
   layerMask:
     serializedVersion: 2
     m_Bits: 64
+  startJumpTime: 0.3
+  jumpTime: 0
+  isJumping: 0
+  secondJumpPower: 5
 --- !u!70 &1281998341262970354
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

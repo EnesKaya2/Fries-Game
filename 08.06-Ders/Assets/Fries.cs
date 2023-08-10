@@ -8,6 +8,7 @@ public class Fries : MonoBehaviour
     private int friesValue;
     private void Start()
     {
+        SoundManager.instance.PlaySound(8);
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         friesValue = Random.Range(1, 30);
     }
@@ -16,6 +17,7 @@ public class Fries : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             ScoreManager.instance.AddPoint(friesValue);
+            SoundManager.instance.PlaySound(7);
             Destroy(gameObject);
             levelManager.count++;
             levelManager.spawnFries();

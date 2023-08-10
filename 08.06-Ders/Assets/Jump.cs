@@ -10,12 +10,18 @@ public class Jump : MonoBehaviour
     [SerializeField] float radius;
     [SerializeField] public static int fallGravityScale;
     [SerializeField] LayerMask layerMask;
-    private SoundManager soundManager;
+
+    [SerializeField] float startJumpTime;
+    [SerializeField] private float jumpTime;
+    [SerializeField] private bool isJumping;
+    [SerializeField] float secondJumpPower;
+    [SerializeField] bool isDoubleJump;
+    
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
     }
 
     // Update is called once per frame
@@ -50,8 +56,35 @@ public class Jump : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && IsGrounded() && !PauseMenu.isPause && !Movement.isDashing)
         {
+            SoundManager.instance.PlaySound(10);
+            isDoubleJump = true;
+            isJumping = true;
+            jumpTime = startJumpTime;
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-            soundManager.JumpSound();
+        }
+        else if (Input.GetButtonDown("Jump") && isDoubleJump)
+        {
+            SoundManager.instance.PlaySound(10);
+            rb.AddForce(Vector2.up * jumpPower*3, ForceMode2D.Impulse);
+            isDoubleJump=false;
+        }
+
+        if (Input.GetButton("Jump") && isJumping)
+        {
+            if (jumpTime > 0)
+            {
+                rb.AddForce(Vector2.up * secondJumpPower, ForceMode2D.Force);
+                jumpTime -= Time.deltaTime;
+            }
+            else
+            {
+                isJumping = false;
+            }
+        }
+
+        if (Input.GetButtonUp("Jump"))
+        {
+            isJumping = false;
         }
     }
 }

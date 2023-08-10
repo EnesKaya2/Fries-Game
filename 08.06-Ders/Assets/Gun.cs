@@ -48,7 +48,7 @@ public class Gun : MonoBehaviour
     {
         Instantiate(bullet, bulletSpawnPos.transform.position, bulletSpawnPos.rotation);
         Instantiate(particle, bulletSpawnPos.transform.position, bulletSpawnPos.rotation);
-
+        SoundManager.instance.PlaySound(14);
     }
     public void GunLight()
     {

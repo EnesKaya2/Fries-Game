@@ -8,7 +8,6 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] private float enemySpeed;
     [SerializeField] private float leftBoundry;
     private LevelManager levelManager;
-    private SoundManager soundManager;
     private Delay delay;
     private UiManager uiManager;
     private PlayerLives playerLives;
@@ -18,7 +17,6 @@ public class EnemyScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-       soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
         delay = GameObject.Find("LevelManager").GetComponent<Delay>();
         uiManager = GameObject.Find("UiManager").GetComponent<UiManager>();
         playerLives = GameObject.Find("LevelManager").GetComponent<PlayerLives>();
@@ -33,7 +31,6 @@ public class EnemyScript : MonoBehaviour
     void MoveEnemy()
     {
         rb.velocity = Vector2.left * enemySpeed;
-        soundManager.AttackEnemySound();
     }
     void DestroyEnemy()
     {
@@ -52,11 +49,11 @@ public class EnemyScript : MonoBehaviour
         //}
         if (collision.gameObject.CompareTag("Player"))
         {
+            SoundManager.instance.PlaySound(3);
             Destroy(collision.gameObject);
             //Direk Canvas 
             //uiManager.GetComponent<Canvas>().enabled = true;
             playerLives.Lives();
-            soundManager.AttackEnemySound();
             if (delay.delayTime==true)
             {
                 delay.DelayStart();

@@ -1567,11 +1567,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
-  jump: {fileID: 8300000, guid: dc519cd3ed82de04ca6a328633a4ae03, type: 3}
-  ground: {fileID: 8300000, guid: 6f8ef5ecc0c5315438901d72b2489252, type: 3}
-  dead: {fileID: 8300000, guid: 63bf1380956a3cb4f8b6cbbcf9d88071, type: 3}
-  attackEnemy: {fileID: 8300000, guid: b5065045c6ed20c49a355a6d616429bc, type: 3}
-  playerEnemy: {fileID: 8300000, guid: 514c5df1edac6ea45b698b78523ad6dc, type: 3}
+  sounds:
+  - {fileID: 8300000, guid: b5065045c6ed20c49a355a6d616429bc, type: 3}
+  - {fileID: 8300000, guid: 88477f5f43e639048a0ce3b31e5ad72e, type: 3}
+  - {fileID: 8300000, guid: 514c5df1edac6ea45b698b78523ad6dc, type: 3}
+  - {fileID: 8300000, guid: 4bf42197dcf497842a12abe7fe0a2faa, type: 3}
+  - {fileID: 8300000, guid: 63bf1380956a3cb4f8b6cbbcf9d88071, type: 3}
+  - {fileID: 8300000, guid: ecb6b971845c14c4d9cbcdbb47ba77c2, type: 3}
+  - {fileID: 8300000, guid: 5339e99183bbc2244800fe25aeca599b, type: 3}
+  - {fileID: 8300000, guid: 387a05bfe49b13844968307c5257cc03, type: 3}
+  - {fileID: 8300000, guid: 5ed03874c4db52e4196a4656ba7d59d6, type: 3}
+  - {fileID: 8300000, guid: bada588ffcb079c4692dffde063f5ddd, type: 3}
+  - {fileID: 8300000, guid: dc519cd3ed82de04ca6a328633a4ae03, type: 3}
+  - {fileID: 8300000, guid: 5b37c4d045230d943b7a4703a8b8ca4b, type: 3}
+  - {fileID: 8300000, guid: 6f8ef5ecc0c5315438901d72b2489252, type: 3}
+  - {fileID: 8300000, guid: 0473784c40b862e4498de475aace8f4a, type: 3}
+  - {fileID: 8300000, guid: 2f53809ab5e67c841b0385005a35d4cc, type: 3}
+  - {fileID: 8300000, guid: 272347c4b9e1d5047be18e1f6572109e, type: 3}
 --- !u!82 &739655029
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1582,7 +1594,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: dc519cd3ed82de04ca6a328633a4ae03, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 272347c4b9e1d5047be18e1f6572109e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

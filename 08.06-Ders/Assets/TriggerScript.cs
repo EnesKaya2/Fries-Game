@@ -29,6 +29,7 @@ public class TriggerScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             MoveEnemy();
+            SoundManager.instance.PlaySound(0);
         }
     }
 

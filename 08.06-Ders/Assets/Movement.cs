@@ -13,8 +13,6 @@ public class Movement : MonoBehaviour
     [SerializeField] private float horizontalMove;
     [SerializeField] private float playerYBoundry;
 
-    private SoundManager soundManager;
-
     private Delay delay;
     private UiManager uiManager;
     private PlayerLives playerLive;
@@ -35,7 +33,6 @@ public class Movement : MonoBehaviour
         trailRenderer = GetComponent<TrailRenderer>();
         Cancel();
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-        soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
         delay = GameObject.Find("LevelManager").GetComponent<Delay>();
         uiManager = GameObject.Find("UiManager").GetComponent<UiManager>();
         playerLive = GameObject.Find("LevelManager").GetComponent<PlayerLives>();
@@ -81,7 +78,7 @@ public class Movement : MonoBehaviour
             Destroy(gameObject);
             //uiManager.GetComponent<Canvas>().enabled = true;
             playerLive.Lives();
-            soundManager.DeadSound();
+            SoundManager.instance.PlaySound(4);
             if (delay.delayTime == true)
             {
                 delay.DelayStart();
@@ -92,6 +89,7 @@ public class Movement : MonoBehaviour
     private IEnumerator Dash()
     {
         Debug.Log("Dashing...");
+        SoundManager.instance.PlaySound(2);
         trailRenderer.emitting = true;
         canDash = false;
         isDashing = true;

@@ -34,6 +34,7 @@ public class Bullet : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player"))
         {
+            SoundManager.instance.PlaySound(5);
             Destroy(collision.gameObject);
             playerLives.Lives();
             if (delay.delayTime == true)
