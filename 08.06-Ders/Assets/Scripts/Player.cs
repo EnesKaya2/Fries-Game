@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float horizontalMove;
     [SerializeField] private float speed;
     [SerializeField] private float playerYBoundry;
+    [SerializeField] private Animator animator;
+    public static bool isDead;
 
 
 
@@ -29,7 +31,9 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        isDead = false;
         rb = GetComponent<Rigidbody2D>();
+        animator =GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         trailRenderer = GetComponent<TrailRenderer>();
         Cancel();
@@ -54,11 +58,12 @@ public class Player : MonoBehaviour
 
     private void Movement()
     {
-        if (isDashing)
+        if (isDashing || isDead)
         {
             return;
         }
         horizontalMove = Input.GetAxis("Horizontal");
+        animator.SetFloat("Run",Mathf.Abs(horizontalMove));
         rb.velocity = new Vector2(horizontalMove * speed, rb.velocity.y);
     }
     void CharacterFlip()
@@ -117,6 +122,24 @@ public class Player : MonoBehaviour
         rb.gravityScale = 5f;
         Jump.fallGravityScale = 15;
     }
+    public void DieAnimation()
+    {
+        animator.SetTrigger("Die");
+        isDead = true;
+        rb.velocity = new Vector2(0,0);
+    }
+    public void KillPlayer()
+    {
+        Destroy(gameObject);
 
+
+        playerLifes.Lifes();
+
+        if (delay.delayTime)
+        {
+            delay.DelayStart();
+        }
+
+    }
 
 }

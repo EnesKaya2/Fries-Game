@@ -5,6 +5,7 @@ using UnityEngine;
 public class Jump : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private Animator animator;
     [SerializeField] private float jumpPower;
     [SerializeField] Transform feetPos;
     [SerializeField] float radius;
@@ -21,6 +22,7 @@ public class Jump : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -52,15 +54,16 @@ public class Jump : MonoBehaviour
     }
     private void JumpAction()
     {
-        if (Input.GetButtonDown("Jump") && IsGrounded() && !PauseMenu.isPause && !Player.isDashing)
+        if (Input.GetButtonDown("Jump") && IsGrounded() && !PauseMenu.isPause && !Player.isDashing && !Player.isDead)
         {
             SoundManager.instance.PlaySound(10);
+            animator.SetBool("Jump",true);
             isJumping = true;
             isDoubleJump = true;
             jumpTime = startJumpTime;
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         }
-        else if (Input.GetButtonDown("Jump")&&isDoubleJump)
+        else if (Input.GetButtonDown("Jump")&& isDoubleJump && !Player.isDead)
         {
             SoundManager.instance.PlaySound(10);
             rb.AddForce(Vector2.up * jumpPower*1.5f, ForceMode2D.Impulse);
@@ -79,6 +82,11 @@ public class Jump : MonoBehaviour
                 isJumping = false;
             }
         }
+        if (Mathf.Approximately(rb.velocity.y,0) && animator.GetBool("Jump"))
+        {
+            animator.SetBool("Jump", false);
+        }
+                
 
         if (Input.GetButtonUp("Jump"))
         {

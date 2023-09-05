@@ -48,16 +48,10 @@ public class Knife : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             SoundManager.instance.PlaySound(11);
+            collision.gameObject.GetComponent<Player>().DieAnimation();
             Instantiate(knifeParticle, collision.gameObject.transform.position, Quaternion.identity);
-            Destroy(collision.gameObject);
             Destroy(gameObject);
 
-            playerLifes.Lifes();
-
-            if (delay.delayTime)
-            {
-                delay.DelayStart();
-            }
         }
     }
 
